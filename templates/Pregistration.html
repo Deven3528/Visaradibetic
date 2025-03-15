@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Patient Registration - Visaara</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+                                                                                                                                                                                                                                                                                                                                               <link href="https://ai-public.creatie.ai/gen_page/tailwind-custom.css" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com/3.4.5?plugins=forms@0.5.7,typography@0.5.13,aspect-ratio@0.4.2,container-queries@0.1.1"></script>
+    <script src="https://ai-public.creatie.ai/gen_page/tailwind-config.min.js" data-color="#1B9AF5" data-border-radius="small"></script>
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col">
+    <nav class="bg-white shadow-sm">
+        <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <div class="flex-shrink-0 flex items-center">
+                        <img class="h-8 w-auto" src="https://img.icons8.com/color/96/patient-oxygen-mask.png" alt="HealthCare"/>
+                        <span class="ml-2 text-xl font-semibold text-gray-900">Visara</span>
+                    </div>
+                </div>
+                <div class="flex items-center">
+                    <a href="#" class="text-gray-500 hover:text-custom transition-colors duration-200">Contact Support</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main class="flex-grow flex items-center justify-center px-4 sm:px-6 lg:px-8">
+        <div class="max-w-md w-full">
+            <div class="text-center mb-8">
+                <img src="https://img.icons8.com/color/96/patient-oxygen-mask.png" alt="" class="mx-auto h-32 w-auto mb-6"/>
+                <h2 class="mt-6 text-3xl font-bold text-gray-900">Create Patient Account</h2>
+                <p class="mt-2 text-sm text-gray-600">Please fill in your details to register</p>
+            </div>
+            <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+                <form class="space-y-6" action="/Pregistration" method="POST" >
+                    <div id="fullname" class="space-y-6">
+                        <label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
+                        <div class="mt-1 relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fas fa-user text-gray-400"></i>
+                            </div>
+                            <input id="fullname" name="name" type="text" required class="!rounded-button appearance-none block w-full pl-10 pr-3 py-2 border border-gray-300 shadow-sm placeholder-gray-400 focus:outline-none focus:ring-custom focus:border-custom sm:text-sm" placeholder="John Doe" pattern="^[A-Za-z\s]{2,50}$" title="Please enter a valid name (2-50 characters, letters only)"/>
+                        </div>
+                    </div>
+                    <div class="space-y-6">
+                        <label for="dob" class="block text-sm font-medium text-gray-700">Date of Birth</label>
+                        <div class="mt-1 relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fas fa-calendar text-gray-400"></i>
+                            </div>
+                            <input id="dob" name="dob" type="date" required class="!rounded-button appearance-none block w-full pl-10 pr-3 py-2 border border-gray-300 shadow-sm placeholder-gray-400 focus:outline-none focus:ring-custom focus:border-custom sm:text-sm" max="2024-02-14"/>
+                        </div>
+                    </div>
+                    <div class="space-y-6">
+                        <label for="gender" class="block text-sm font-medium text-gray-700">Gender</label>
+                        <div class="mt-1 relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fas fa-venus-mars text-gray-400"></i>
+                            </div>
+                            <select id="gender" name="gender" required class="!rounded-button appearance-none block w-full pl-10 pr-3 py-2 border border-gray-300 shadow-sm placeholder-gray-400 focus:outline-none focus:ring-custom focus:border-custom sm:text-sm">
+                                <option value="">Select gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700">Email address</label>
+                        <div class="mt-1 relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fas fa-envelope text-gray-400"></i>
+                            </div>
+                            <input id="email" name="email" type="email" required class="!rounded-button appearance-none block w-full pl-10 pr-3 py-2 border border-gray-300 shadow-sm placeholder-gray-400 focus:outline-none focus:ring-custom focus:border-custom sm:text-sm" placeholder="patient@example.com" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" title="Please enter a valid email address"/>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="phone" class="block text-sm font-medium text-gray-700">Phone Number</label>
+                        <div class="mt-1 relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fas fa-phone text-gray-400"></i>
+                            </div>
+                            <input id="phone" name="phone" type="tel" required class="!rounded-button appearance-none block w-full pl-10 pr-3 py-2 border border-gray-300 shadow-sm placeholder-gray-400 focus:outline-none focus:ring-custom focus:border-custom sm:text-sm" placeholder="+91 9876543210" pattern="[6-9]\d{9}" title="Please enter a valid phone number (E.164 format)"/>
+                        </div>
+                    </div>
+                    <div id="address-field">
+                        <label for="address" class="block text-sm font-medium text-gray-700">Address</label>
+                        <div class="mt-1 relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fas fa-home text-gray-400"></i>
+                            </div>
+                            <input id="address" name="address" type="text" required class="!rounded-button appearance-none block w-full pl-10 pr-3 py-2 border border-gray-300 shadow-sm placeholder-gray-400 focus:outline-none focus:ring-custom focus:border-custom sm:text-sm" placeholder="Enter your address"/>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                        <div class="mt-1 relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fas fa-lock text-gray-400"></i>
+                            </div>
+                            <input id="password" name="password" type="password" required class="!rounded-button appearance-none block w-full pl-10 pr-3 py-2 border border-gray-300 shadow-sm placeholder-gray-400 focus:outline-none focus:ring-custom focus:border-custom sm:text-sm" placeholder="••••••••" pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&amp;])[A-Za-z\d@$!%*#?&amp;]{8,}$" title="Password must be at least 8 characters and include letters, numbers, and special characters"/>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="confirm-password" class="block text-sm font-medium text-gray-700">Confirm Password</label>
+                        <div class="mt-1 relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fas fa-lock text-gray-400"></i>
+                            </div>
+                            <input id="confirm-password" name="confirm-password" type="password" required class="!rounded-button appearance-none block w-full pl-10 pr-3 py-2 border border-gray-300 shadow-sm placeholder-gray-400 focus:outline-none focus:ring-custom focus:border-custom sm:text-sm" placeholder="••••••••" pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&amp;])[A-Za-z\d@$!%*#?&amp;]{8,}$" title="Passwords must match"/>
+                        </div>
+                    </div>
+                    <div class="space-y-6">
+                        <label class="block text-sm font-medium text-gray-700">Existing Eye Conditions</label>
+                        <div class="mt-2 space-y-2">
+                            <div class="flex items-center">
+                                <input type="checkbox" id="blurred-vision" name="eye_conditions[]" value="blurred_vision" class="h-4 w-4 text-custom focus:ring-custom border-gray-300 !rounded-button"/>
+                                <label for="blurred-vision" class="ml-2 block text-sm text-gray-900">Blurred Vision</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="glaucoma" name="eye_conditions[]" value="glaucoma" class="h-4 w-4 text-custom focus:ring-custom border-gray-300 !rounded-button"/>
+                                <label for="glaucoma" class="ml-2 block text-sm text-gray-900">Glaucoma</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="cataract" name="eye_conditions[]" value="cataract" class="h-4 w-4 text-custom focus:ring-custom border-gray-300 !rounded-button"/>
+                                <label for="cataract" class="ml-2 block text-sm text-gray-900">Cataract</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="none" name="eye_conditions[]" value="none" class="h-4 w-4 text-custom focus:ring-custom border-gray-300 !rounded-button"/>
+                                <label for="none" class="ml-2 block text-sm text-gray-900">None</label>
+                            </div>
+                            <div class="flex items-center">
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input type="checkbox" id="diabetes-history" name="diabetes_history" class="sr-only peer"/>
+                                    <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-custom"></div>
+                                    <span class="ml-3 text-sm font-medium text-gray-900">Diabetes History</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <input id="terms" name="terms" type="checkbox" required class="h-4 w-4 text-custom focus:ring-custom border-gray-300 !rounded-button"/>
+                        <label for="terms" class="ml-2 block text-sm text-gray-900">I agree to the <a href="#" class="text-custom hover:text-custom-600">Terms of Service</a> and <a href="#" class="text-custom hover:text-custom-600">Privacy Policy</a></label>
+                    </div>
+                    <div>
+                        <button type="submit" class="!rounded-button w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium text-white bg-custom hover:bg-custom-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-custom">Create Account</button>
+                    </div>
+                </form>
+            </div>
+            <p class="mt-8 text-center text-sm text-gray-600">Already have an account? <a href="Plogin.html" class="text-custom hover:text-custom-600">Log in</a></p>
+        </div>
+        <div id="successPopup" class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center hidden">
+            <div class="bg-white rounded-2xl shadow-xl w-[450px] p-10">
+                <div class="flex flex-col items-center">
+                    <div class="w-20 h-20 rounded-full bg-green-100 flex items-center justify-center mb-6">
+                        <i class="fas fa-check text-4xl text-green-500"></i>
+                    </div>
+                    <h2 class="text-3xl font-bold text-black mb-4">Registration Successful!</h2>
+                    <p class="text-gray-600 text-center text-lg mb-8">Your account has been created successfully.</p>
+                    <p class="text-gray-500 text-center mt-4">Redirecting to dashboard in <span id="countdown">5</span> seconds...</p>
+                </div>
+                <script>
+                    document.addEventListener("DOMContentLoaded", function () {
+                        const form = document.querySelector("form");
+                        const successPopup = document.getElementById("successPopup");
+                        const countdownElement = document.getElementById("countdown");
+                        let countdown = 5;
+                
+                        form.addEventListener("submit", function (event) {
+                            event.preventDefault(); // Prevent default form submission
+                
+                            // Show the success popup
+                            successPopup.classList.remove("hidden");
+                
+                            // Countdown before redirection
+                            const countdownInterval = setInterval(() => {
+                                countdown--;
+                                countdownElement.textContent = countdown;
+                
+                                if (countdown === 0) {
+                                    clearInterval(countdownInterval);
+                                    window.location.href = "dashboard.html"; // Redirect after countdown
+                                }
+                            }, 1000);
+                        });
+                    });
+                </script>
+                
+            </div>
+        </div>
+        </div>
+        <script>
+            document.getElementById('dob').max = new Date().toISOString().split("T")[0];
+        </script>
+        
+       
+    </main>
+    <footer class="bg-white mt-8">
+        <div class="max-w-8xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
+            <div class="text-center text-sm text-gray-500">© 2024 Visaara. All rights reserved.</div>
+        </div>
+    </footer>
+</body>
+</html>

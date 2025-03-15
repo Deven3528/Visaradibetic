@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>AI Analysis</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+    <link href="https://ai-public.creatie.ai/gen_page/tailwind-custom.css" rel="stylesheet"/>
+    <style id="animation-styles">
+        .animate-slide-in-left { animation: slideInLeft 1s ease-out; }
+        .animate-slide-in-right { animation: slideInRight 1s ease-out; }
+        .animate-slide-in-top { animation: slideInTop 1s ease-out; }
+        .animate-slide-in-bottom { animation: slideInBottom 1s ease-out; }
+        @keyframes slideInLeft { from { opacity: 0; transform: translateX(-100px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes slideInRight { from { opacity: 0; transform: translateX(100px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes slideInTop { from { opacity: 0; transform: translateY(-100px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideInBottom { from { opacity: 0; transform: translateY(100px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+    <script src="https://cdn.tailwindcss.com/3.4.5?plugins=forms@0.5.7,typography@0.5.13,aspect-ratio@0.4.2,container-queries@0.1.1"></script>
+    <script src="https://ai-public.creatie.ai/gen_page/tailwind-config.min.js" data-color="#000000" data-border-radius="small"></script>
+</head>
+<body class="bg-gradient-to-br from-red-50 via-pink-50 to-orange-50">
+    <nav class="top--2 w-full z-50 bg-white/80 backdrop-blur-md shadow-sm">
+        <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <img src="static\img\logo.png" alt="Visaara" class="h-8 w-auto"/>
+                </div>
+                <div class="flex items-center space-x-8">
+                    <a href="{{ url_for('index') }}" class="text-gray-700 hover:text-custom transition-all duration-300 hover:scale-110 transform">Home</a>
+                    <a href="#" class="text-gray-700 hover:text-custom transition-all duration-300 hover:scale-110 transform">AI Analysis</a>
+                    <a href="{{ url_for('Dlogin') }}" class="text-gray-700 hover:text-custom transition-all duration-300 hover:scale-110 transform">Doctor Login</a>
+                    <a href="{{ url_for('Plogin') }}" class="text-gray-700 hover:text-custom transition-all duration-300 hover:scale-110 transform">Patient Login</a>
+                    <a href="{{ url_for('contact') }}" class="text-gray-700 hover:text-custom transition-all duration-300 hover:scale-110 transform">Contact Us</a>
+                    <button class="!rounded-button bg-custom text-white px-6 py-2 hover:bg-custom/90 transition-all duration-300 hover:scale-110 transform">Get Started</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="text-center mb-12 animate-slide-in-top">
+            <h1 class="text-4xl font-bold text-gray-900 mb-4">AI-Powered Diabetic Retinopathy Analysis</h1>
+            <p class="text-xl text-gray-600">Advanced deep learning system for early detection and analysis of diabetic retinopathy</p>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 mb-12 animate-slide-in-left">
+            <div class="bg-white rounded-lg shadow-sm p-6 lg:col-span-2">
+                <div class="border-2 border-dashed border-gray-300 rounded-lg p-12 text-center transform transition-all duration-300 hover:scale-105 hover:border-custom hover:shadow-lg">
+                    <div class="mx-auto flex justify-center">
+                        <i class="fas fa-cloud-upload-alt text-4xl text-custom mb-4 animate-bounce"></i>
+                    </div>
+                    <h3 class="text-lg font-medium text-gray-900 mb-2">Begin Your Eye Analysis</h3>
+                    <p class="text-gray-500 mb-4">Upload your eye scan for comprehensive analysis</p>
+                    <button class="!rounded-button bg-custom text-white px-6 py-2 text-sm font-medium">Upload Now</button>
+                    <p class="mt-2 text-xs text-gray-500">Supported formats: JPEG, PNG (Max. 10MB)</p>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-sm p-6 lg:col-span-3">
+                <h3 class="text-lg font-medium text-gray-900 mb-4">Comprehensive Analysis Results</h3>
+                <div id="analysisChart" class="h-96 mb-4"></div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-gray-50 rounded-lg p-4">
+                        <p class="text-sm font-medium text-gray-500">Confidence Score</p>
+                        <p class="text-2xl font-bold text-custom">94%</p>
+                    </div>
+                    <div class="bg-gray-50 rounded-lg p-4">
+                        <p class="text-sm font-medium text-gray-500">Processing Time</p>
+                        <p class="text-2xl font-bold text-custom"><span class="inline-flex items-center"><span class="animate-spin mr-2"><i class="fas fa-circle-notch"></i></span>1.8s</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bg-white rounded-lg shadow-sm p-6 mb-12 mt-8 animate-slide-in-right relative" style="overflow: hidden;">
+            <h3 class="text-lg font-medium text-gray-900 mb-4">Benefits of Our Advanced Analysis System</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 overflow-hidden infinite-scroll" style="display: flex; gap: 1.5rem; width: fit-content;">
+                <div class="border rounded-lg p-4">
+                    <div class="flex items-center mb-2">
+                        <i class="fas fa-upload text-blue-500 mr-2"></i>
+                        <h4 class="font-medium text-gray-900">Patient Upload</h4>
+                    </div>
+                    <p class="text-sm text-gray-500">Secure retinal image upload</p>
+                </div>
+                <div class="border rounded-lg p-4">
+                    <div class="flex items-center mb-2">
+                        <i class="fas fa-brain text-purple-500 mr-2"></i>
+                        <h4 class="font-medium text-gray-900">AI Analysis</h4>
+                    </div>
+                    <p class="text-sm text-gray-500">Deep learning model processing</p>
+                </div>
+                <div class="border rounded-lg p-4">
+                    <div class="flex items-center mb-2">
+                        <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                        <h4 class="font-medium text-gray-900">Instant Processing</h4>
+                    </div>
+                    <p class="text-sm text-gray-500">Results delivered within seconds of upload</p>
+                </div>
+                <div class="border rounded-lg p-4">
+                    <div class="flex items-center mb-2">
+                        <i class="fas fa-exclamation-circle text-yellow-500 mr-2"></i>
+                        <h4 class="font-medium text-gray-900">Superior Accuracy</h4>
+                    </div>
+                    <p class="text-sm text-gray-500">94% accuracy in detection and analysis</p>
+                </div>
+                <div class="border rounded-lg p-4">
+                    <div class="flex items-center mb-2">
+                        <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                        <h4 class="font-medium text-gray-900">User Friendly</h4>
+                    </div>
+                    <p class="text-sm text-gray-500">Simple interface with detailed reporting</p>
+                </div>
+                <div class="border rounded-lg p-4">
+                    <div class="flex items-center mb-2">
+                        <i class="fas fa-plug text-indigo-500 mr-2"></i>
+                        <h4 class="font-medium text-gray-900">Integration Support</h4>
+                    </div>
+                    <p class="text-sm text-gray-500">Easy integration with existing healthcare systems</p>
+                </div>
+            </div>
+            <style>
+                .infinite-scroll { animation: scroll 20s linear infinite; display: flex; }
+                .infinite-scroll > div { flex-shrink: 0; }
+                .infinite-scroll:hover { animation-play-state: paused; }
+                @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-100% / 2)); } }
+            </style>
+        </div>
+        <div class="text-center animate-slide-in-bottom">
+            <button class="!rounded-button border border-custom text-custom px-8 py-3 text-sm font-medium">Learn More</button>
+        </div>
+    </main>
+
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div>
+                    <img src="static\img\logo_processed.png" alt="Visaara" class="h-8 w-auto mb-4"/>
+                    <p class="text-gray-400">AI-powered retinopathy detection for better eye health</p>
+                </div>
+                <div>
+                    <h3 class="font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="visaara.html" class="hover:text-white">Home</a></li>
+                        <li><a href="#" class="hover:text-white">AI Prediction</a></li>
+                        <li><a href="/doctor-login" class="hover:text-white">Doctor Login</a></li>
+                        <li><a href="#" class="hover:text-white">Patient Login</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold mb-4">Resources</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white">Documentation</a></li>
+                        <li><a href="#" class="hover:text-white">API Reference</a></li>
+                        <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold mb-4">Contact</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><i class="fas fa-envelope mr-2"></i>support@aieye.com</li>
+                        <li><i class="fas fa-phone mr-2"></i>+1 (555) 123-4567</li>
+                        <li><i class="fas fa-map-marker-alt mr-2"></i>123 AI Street, Medical District</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>© 2024 Visaara. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const chart = echarts.init(document.getElementById('analysisChart'));
+        function updateChart() {
+            const option = {
+                animation: { duration: 1000, easing: 'cubicOut' },
+                title: { text: 'Risk Assessment', left: 'center', textStyle: { fontSize: 16, fontWeight: 'bold' } },
+                tooltip: { trigger: 'axis', formatter: '{b}: {c}%', backgroundColor: 'rgba(0, 0, 0, 0.8)', borderColor: '#fff', textStyle: { color: '#fff' } },
+                xAxis: { type: 'category', data: ['NORMAL', 'AMS', 'MH', 'DRUSEN', 'CSR', 'CNV', 'DME', 'DR'], axisLabel: { rotate: 45 }, animationDuration: 1000, animationDelay: function(idx) { return idx * 100; } },
+                yAxis: { type: 'value', max: 100, axisLabel: { formatter: '{value}%' }, animationDuration: 1000, animationDelay: function(idx) { return idx * 100; } },
+                series: [{
+                    data: [Math.random() * 10 + 85, Math.random() * 20 + 70, Math.random() * 25 + 60, Math.random() * 15 + 55, Math.random() * 30 + 45, Math.random() * 20 + 35, Math.random() * 30 + 25, Math.random() * 10 + 15],
+                    type: 'line', smooth: true, animationDelay: function (idx) { return idx * 100; }, animationDuration: 1500, animationEasing: 'cubicInOut',
+                    lineStyle: { color: '#10B981', width: 3 },
+                    symbolSize: 8, symbol: 'circle',
+                    itemStyle: { color: function(params) { const colors = ['#34D399', '#10B981', '#059669', '#047857', '#065F46', '#064E3B', '#022C22', '#014737']; return colors[params.dataIndex]; } },
+                    areaStyle: { color: { type: 'linear', x: 0, y: 0, x2: 0, y2: 1, colorStops: [{ offset: 0, color: 'rgba(16, 185, 129, 0.5)' }, { offset: 1, color: 'rgba(16, 185, 129, 0.1)' }] }, opacity: 0.8 }
+                }]
+            };
+            chart.setOption(option);
+        }
+        updateChart();
+        setInterval(updateChart, 2000);
+        window.addEventListener('resize', function() { chart.resize(); });
+    </script>
+</body>
+</html>
