@@ -24,7 +24,7 @@
       data-border-radius="small"
     ></script>
     <script>
-      window.history.pushState({}, "", "doctor_dashboard.html");
+      window.history.pushState({}, "", "Ddash.html");
     </script>
   </head>
   <body class="bg-gradient-to-br from-green-50 to-green-100 font-sans">
@@ -44,13 +44,13 @@
         <nav class="mt-6">
           <div class="px-4 space-y-2">
             <a
-              href="{{ url_for('Ddash') }}"
+              href="{{ url_for('Dappointment') }}"
               class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-50"
             >
               <i class="fas fa-home w-5 h-5 mr-3"></i>Dashboard
             </a>
             <a
-              href="{{ url_for('DPatientmgmt') }}"
+              href="{{ url_for('Dpatientmanagement') }}"
               class="flex items-center px-4 py-3 bg-custom text-white"
             >
               <i class="fas fa-user-group w-5 h-5 mr-3"></i>Patient Management
@@ -68,13 +68,13 @@
               <i class="fas fa-chart-bar w-5 h-5 mr-3"></i>Reports & Insights
             </a>
             <a
-              href="{{ url_for('DAppointments') }}"
+              href="Dappointment.html"
               class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-50"
             >
               <i class="fas fa-calendar-check w-5 h-5 mr-3"></i>Appointments
             </a>
             <a
-              href="{{ url_for('DSettings') }}"
+              href="{{ url_for('Dsetting') }}"
               class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-50"
             >
               <i class="fas fa-cog w-5 h-5 mr-3"></i>Settings

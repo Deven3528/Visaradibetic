@@ -76,9 +76,9 @@ def Dsetting():
 def DReport():
     return render_template('DReport.html')
 
-@app.route('/DPatientmgmt.html')
-def DPatientmgmt():
-    return render_template('DPatientmgmt.html')
+@app.route('/Dpatientmanagement.html')
+def Dpatientmanagement():
+    return render_template('Dpatientmanagement.html')
 
 @app.route('/Pregistration.html')
 def Pregistration():
