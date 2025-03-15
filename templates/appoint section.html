@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Book Your Appointment</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+    <link href="https://ai-public.creatie.ai/gen_page/tailwind-custom.css" rel="stylesheet"/>
+    <link href="main.css"
+    rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com/3.4.5?plugins=forms@0.5.7,typography@0.5.13,aspect-ratio@0.4.2,container-queries@0.1.1"></script>
+    <script src="https://ai-public.creatie.ai/gen_page/tailwind-config.min.js" data-color="#1B9AF5" data-border-radius="small"></script>
+    <script>
+        window.history.pushState({}, "", "Pdash.html");
+      </script>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <aside class="w-64 bg-white shadow-lg fixed h-full">
+        <div class="p-4 border-b">
+          <img
+            src="https://ai-public.creatie.ai/gen_page/logo_placeholder.png"
+            alt="Logo"
+            class="h-8"
+          />
+        </div>
+        <nav class="mt-6">
+          <a
+            href="patientdashboard.html"
+            class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-50"
+          >
+            <i class="fas fa-home w-6"></i>
+            <span class="mx-4">Dashboard</span>
+          </a>
+  
+          <a href="Paianalysis.html" class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-50">
+            <i class="fas fa-microscope w-6"></i>
+            <span class="mx-4">AI Analysis</span>
+          </a>
+  
+          <a
+            href="report(Pdash).html"
+            class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-50"
+          >
+            <i class="fas fa-file-medical w-6"></i>
+            <span class="mx-4">Reports</span>
+          </a>
+  
+          <a
+            href="appoint section.html"
+            class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-50"
+          >
+            <i class="fas fa-calendar-check w-6"></i>
+            <span class="mx-4">Appointments</span>
+          </a>
+          <a
+            href="yogabot.html"
+            class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-50"
+          >
+            <i class="fas fa-robot w-6"></i>
+            <span class="mx-4">YogaBot</span>
+          </a>
+          <a
+            href="setting.html  "
+            class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-50"
+          >
+            <i class="fas fa-cog w-6"></i>
+            <span class="mx-4">Settings</span>
+          </a>
+        </nav>
+      </aside>
+    <nav class="bg-white border-b border-gray-200">
+        <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex-shrink-0 flex items-center">
+                    <img class="h-8 w-auto" src="https://ai-public.creatie.ai/gen_page/logo_placeholder.png" alt="Logo"/>
+                </div>
+                <div class="flex items-center">
+                    <button class="!rounded-button bg-custom text-white px-4 py-2 text-sm font-medium hover:bg-opacity-90 transition-all duration-300">
+                        <i class="fas fa-user-circle mr-2"></i>My Profile
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="hello grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="lg:col-span-2">
+                <div class="bg-white rounded-lg shadow p-6 mb-8">
+                    <h2 class="text-2xl font-semibold mb-6">Book Your General Consultation</h2>
+                    <form>
+                        <div class="space-y-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Choose Specialist</label>
+                                <select class="form-select block w-full !rounded-button border-gray-300 hover:border-custom focus:border-custom focus:ring focus:ring-custom focus:ring-opacity-50 transition-all duration-300">
+                                    <option>Dr. Sarah Wilson - Family Doctor</option>
+                                    <option>Dr. John Smith - Internal Medicine</option>
+                                    <option>Dr. Emily Brown - Pediatrician</option>
+                                </select>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Date</label>
+                                    <input type="date" class="form-input block w-full !rounded-button border-gray-300 hover:border-custom focus:border-custom focus:ring focus:ring-custom focus:ring-opacity-50 transition-all duration-300"/>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Time</label>
+                                    <select class="form-select block w-full !rounded-button border-gray-300 hover:border-custom focus:border-custom focus:ring focus:ring-custom focus:ring-opacity-50 transition-all duration-300">
+                                        <option>09:00 AM</option>
+                                        <option>10:00 AM</option>
+                                        <option>11:00 AM</option>
+                                        <option>02:00 PM</option>
+                                        <option>03:00 PM</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Reason for Visit</label>
+                                <textarea rows="4" class="form-textarea block w-full !rounded-button border-gray-300 hover:border-custom focus:border-custom focus:ring focus:ring-custom focus:ring-opacity-50 transition-all duration-300" placeholder="Please describe your symptoms or reason for visit"></textarea>
+                            </div>
+                            <button type="submit" onclick="showModal()" class="!rounded-button w-full bg-custom text-white py-3 font-medium hover:bg-opacity-90 transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98]">
+                                Confirm Appointment
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="lg:col-span-1">
+                <div class="bg-white rounded-lg shadow p-6 mb-8">
+                    <h3 class="text-lg font-semibold mb-4">Upcoming Appointments</h3>
+                    <div class="space-y-4">
+                        <div class="border !rounded-button p-4 hover:shadow-md transition-all duration-300">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">Upcoming</span>
+                                <button class="text-red-600 text-sm font-medium hover:text-red-700">Cancel</button>
+                            </div>
+                            <p class="font-medium">Dr. Sarah Wilson</p>
+                            <p class="text-sm text-gray-500">Family Doctor</p>
+                            <div class="mt-2 text-sm text-gray-500">
+                                <i class="far fa-calendar mr-2"></i>March 15, 2024
+                                <i class="far fa-clock ml-4 mr-2"></i>09:00 AM
+                            </div>
+                        </div>
+                        <div class="border !rounded-button p-4 hover:shadow-md transition-all duration-300">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">Completed</span>
+                            </div>
+                            <p class="font-medium">Dr. John Smith</p>
+                            <p class="text-sm text-gray-500">Internal Medicine</p>
+                            <div class="mt-2 text-sm text-gray-500">
+                                <i class="far fa-calendar mr-2"></i>March 10, 2024
+                                <i class="far fa-clock ml-4 mr-2"></i>02:00 PM
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow p-6"></div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Stats</h3>
+                    <div class="grid grid-cols-2 gap-4"></div>
+                        <div class="border !rounded-button p-4 text-center hover:shadow-md transition-all duration-300">
+                            <p class="text-2xl font-semibold text-green-600">2</p>
+                            <p class="text-sm text-gray-500">Upcoming</p>
+                        </div>
+                        <div class="border !rounded-button p-4 text-center hover:shadow-md transition-all duration-300">
+                            <p class="text-2xl font-semibold text-gray-600">5</p>
+                            <p class="text-sm text-gray-500">Completed</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="bg-white border-t border-gray-200 mt-12">
+        <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div class="text-center text-sm text-gray-500">
+                © 2024 Medical Appointment System. All rights reserved.
+            </div>
+        </div>
+    </footer>
+    <script>
+        function showModal() {
+            const modal = document.getElementById('successModal');
+            const modalContent = document.getElementById('modalContent');
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modalContent.classList.remove('scale-95', 'opacity-0');
+                modalContent.classList.add('scale-100', 'opacity-100');
+            }, 50);
+        }
+
+        function hideModal() {
+            const modal = document.getElementById('successModal');
+            const modalContent = document.getElementById('modalContent');
+            modalContent.classList.remove('scale-100', 'opacity-100');
+            modalContent.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        document.getElementById('successModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                hideModal();
+            }
+        });
+    </script>
+</body>
+</html>

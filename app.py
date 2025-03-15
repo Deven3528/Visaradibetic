@@ -21,7 +21,7 @@ firebaseConfig = {
     'apiKey': "AIzaSyAUuAFrWwrTtMGsfdtYdc-cPx2TDFqmvQM",
     'authDomain': "visara-health-management.firebaseapp.com",
     'projectId': "visara-health-management",
-    'storageBucket': "visara-health-management.firebasestorage.app",
+    'storageBucket': "visara-health-management.appspot.com",
     'messagingSenderId': "185911663002",
     'appId': "1:185911663002:web:17927fd2fa98902a4bc223",
     'measurementId': "G-CPLGMRRNGZ",
@@ -84,6 +84,29 @@ def Dpatientmanagement():
 def Pregistration():
     return render_template('Pregistration.html')
 
+@app.route('/Pdash.html')
+def Pdash():
+    return render_template('Pdash.html')
+
+@app.route('/appoint section.html')
+def appoint_section():
+    return render_template('appoint section.html')
+
+@app.route('/Paianalysis.html')
+def Paianalysis():
+    return render_template('Paianalysis.html')
+
+@app.route('/report(Pdash).html')
+def report():
+    return render_template('report(Pdash).html')
+
+@app.route('/yogabot.html')
+def yogabot():
+    return render_template('yogabot.html')
+
+@app.route('/setting.html')
+def setting():
+    return render_template('setting.html')
 
 @app.route("/Dregistration", methods=["POST"])
 def doctor_registration():
@@ -108,34 +131,40 @@ def doctor_registration():
         return jsonify({"success": True})
 
 
-   
-
 @app.route("/Pregistration", methods=["POST"])
 def patient_registration():
-    if request.method == "POST":
+    try:
+        # Get data from the form
         full_name = request.form.get("fullname")
-        age = request.form.get("age")
+        dob = request.form.get("dob")
         gender = request.form.get("gender")
         email = request.form.get("email")
-        phone_number = request.form.get("phoneNumber")
+        phone = request.form.get("phone")
+        address = request.form.get("address")
         password = request.form.get("password")
-        user = auth.create_user_with_email_and_password(email, password)
+        diabetes_history = request.form.get("diabetes-history")
+        eye_conditions = request.form.getlist("eye_conditions[]")
 
-        # Store patient data in Firebase Realtime Database
+        # Data to push to Firebase
         patient_data = {
             "full_name": full_name,
-            "age": age,
+            "dob": dob,
             "gender": gender,
             "email": email,
-            "phone_number": phone_number,
-            
+            "phone": phone,
+            "address": address,
+            "password": password,
+            "diabetes_history": diabetes_history,
+            "eye_conditions": eye_conditions
         }
+
+        # Push data to Firebase Database
         db.child("patients").push(patient_data)
 
-        # Return success message with popup
-        return jsonify({"success": True})
-       
+        return jsonify({"message": "Patient registration successful"}), 200
 
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
        
 
 if __name__ == '__main__':

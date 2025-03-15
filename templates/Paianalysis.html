@@ -1,0 +1,345 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>AI Diabetic Retinopathy Prediction</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+    <link href="https://ai-public.creatie.ai/gen_page/tailwind-custom.css" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com/3.4.5?plugins=forms@0.5.7,typography@0.5.13,aspect-ratio@0.4.2,container-queries@0.1.1"></script>
+    <script src="https://ai-public.creatie.ai/gen_page/tailwind-config.min.js" data-color="#16BC88" data-border-radius="small"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+    
+</head>
+<body class="bg-gray-50 min-h-screen ">
+    <style>@keyframes progress { from { width: 0%; } to { width: 100%; }}@keyframes progress { 0% { width: 0; } 100% { width: 100%; } } .processing-text { display: block; } .completed-text { display: none; } .completed .processing-text { display: none; } .completed .completed-text { display: block; }</style>
+    <div class="min-h-screen flex">
+        <aside class="w-64 bg-white shadow-lg fixed h-full ">
+            <div class="p-4 border-b">
+                <img src="https://ai-public.creatie.ai/gen_page/logo_placeholder.png" alt="Logo" class="h-8"/>
+            </div>
+            <nav class="mt-6">
+                <a href="patientdashboard.html" class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-50">
+                    <i class="fas fa-home w-6"></i>
+                    <span class="mx-4">Dashboard</span>
+                </a>
+                
+                <a href="AI Analyis(Pdash).html" class="flex items-center px-4 py-3 bg-custom text-white">
+                    <i class="fas fa-microscope w-6 fas fa-home w-6"></i>
+                    <span class="mx-4">AI Analysis</span>
+                    
+                </a>
+            
+                
+                <a href="report(Pdash).html" class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-50">
+                    <i class="fas fa-file-medical w-6"></i>
+                    <span class="mx-4">Reports</span>
+                </a>
+            
+                <a href="appoint section.html" class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-50">
+                    <i class="fas fa-calendar-check w-6"></i>
+                    <span class="mx-4">Appointments</span>
+                </a>
+                <a href="yogabot.html" class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-50">
+                    <i class="fas fa-robot w-6"></i>
+                    <span class="mx-4">YogaBot</span>
+                </a>
+                <a href="setting.html" class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-50">
+                    <i class="fas fa-cog w-6"></i>
+                    <span class="mx-4">Settings</span>
+                </a>
+            </nav>
+        </aside>
+        
+        <div class="flex-1 ml-64">
+            <header class="bg-white shadow-sm">
+                <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex justify-between h-16">
+                        <div class="flex items-center">
+                            <h1 class="text-2xl font-semibold text-gray-900">AI Image Analysis</h1>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <button class="p-2 text-gray-400 hover:text-gray-500">
+                                <i class="fas fa-bell text-xl"></i>
+                            </button>
+                            <div class="flex items-center">
+                                <img class="h-8 w-8 rounded-full object-cover" src="https://creatie.ai/ai/api/search-image?query=A professional headshot of a middle-aged person with a warm smile, wearing business casual attire, against a neutral background. The lighting is soft and flattering, creating a friendly and approachable appearance.&width=200&height=200&orientation=squarish&flag=c4a1e666-7ba2-4287-8358-285f11ca7771&flag=a7997af9-6065-42b3-b507-eb33cc379245&flag=5a7eae25-21f8-42b0-bf58-4dcf56c47bc6&flag=be83abdb-07d8-4828-b64d-1e1f17ec5587&flag=c971d15f-a265-4b48-9bb3-c6f6cac24643&flag=c46b464a-533b-4e6a-8fdb-fe1efc054bfa" alt="User"/>
+                                <span class="ml-2 text-sm font-medium text-gray-700">John Doe</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+    <main class="max-w-8xl mx-auto px-6 sm:px-6 lg:px-8 py-8 ml-64 bg-gradient-to-r from-green-50 to-green-100">
+        <div class="bg-white rounded-lg shadow-sm p-6 mb-8">
+            <div class="flex items-center justify-between mb-6">
+                <h1 class="text-2xl font-semibold text-gray-900">Retinal Analysis</h1>
+                <div class="flex space-x-4">
+                    <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800 animate-bounce">
+                        <i class="fas fa-check-circle mr-2"></i>
+                        AI Ready
+                    </span>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 gap-8"></div>
+                <div id="prediction-popup" class="fixed bg-black bg-opacity-50 inset-0 backdrop-blur-sm" style="display: none; z-index:1000;">
+                    <div class="flex items-center justify-center min-h-screen w-full">
+                        <div class="bg-white rounded-lg p-8 max-w-md w-full mx-4" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); max-width: 32rem; width: 100%;">
+                            <div class="text-center">
+                                <div class="mb-4">
+                                    <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-custom mx-auto"></div>
+                                </div>
+                                <div class="mb-4 hidden completed-text">
+                                    <i class="fas fa-check-circle text-4xl text-green-500"></i>
+                                </div>
+                                <h3 class="text-xl font-semibold mb-2">Processing...</h3>
+                                <p class="text-gray-600 mb-6">Your retinal scan has been analyzing</p>
+                                <div class="w-full bg-gray-200 rounded-full h-2 mb-4">
+                                    <div class="bg-custom h-2 rounded-full animate-[progress_10s_ease-in]" style="width: 0%; animation: progress 10s linear forwards;"></div>
+                                </div>
+                                <div class="text-sm text-gray-500">
+                                    <div class="processing-text">Analysis in progress... Please wait</div>
+                                    <div class="completed-text" style="display: none">Analysis completed!</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-6">
+                    <button class="mb-4 w-full bg-blue-600 !rounded-button text-white px-6 py-3 text-lg font-medium hover:bg-blue-700 flex items-center justify-center" onclick="document.getElementById(&#39;prediction-popup&#39;).style.display = &#39;flex&#39;; setTimeout(() =&gt; { document.getElementById(&#39;id-90&#39;).style.width = &#39;100%&#39;; document.getElementById(&#39;id-88&#39;).textContent = &#39;Analysis complete - Results ready&#39;; }, 10000); setTimeout(() =&gt; { document.getElementById(&#39;prediction-popup&#39;).style.display = &#39;none&#39;; alert(&#39;Analysis complete!&#39;); }, 11000);" id="predict-btn">
+                        <i class="fas fa-robot mr-2"></i>Start AI Prediction
+                    </button>
+                    <div class="bg-gray-50 rounded-lg p-6">
+                        <h3 class="text-lg font-medium text-gray-900 mb-4">Analysis Results</h3>
+                        <div class="space-y-4">
+                            <div class="bg-green-50 border border-green-200 rounded-lg p-4 animate-fadeIn">
+                                <div class="flex items-center">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-check-circle text-green-500 text-xl"></i>
+                                    </div>
+                                    <div class="ml-3">
+                                        <h3 class="text-sm font-medium text-green-800">No Diabetic Retinopathy Detected</h3>
+                                        <p class="mt-1 text-sm text-green-700">AI Confidence: 98.5%</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4 animate-slideIn">
+                                <div class="bg-white rounded-lg p-4 border border-gray-200">
+                                    <div class="text-sm font-medium text-gray-500">Severity Score</div>
+                                    <div class="mt-1 text-2xl font-semibold text-gray-900">0.2</div>
+                                    <div class="text-xs text-gray-400">Scale: 0-4</div>
+                                </div>
+                                <div class="bg-white rounded-lg p-4 border border-gray-200">
+                                    <div class="text-sm font-medium text-gray-500">Processing Time</div>
+                                    <div class="mt-1 text-2xl font-semibold text-gray-900">9.2</div>
+                                    <div class="text-xs text-gray-400">seconds</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-custom transition-colors" onclick="document.getElementById(&#39;file-upload&#39;).click()">
+                        <input type="file" id="file-upload" style="display: none" accept="image/jpeg,image/png,application/dicom" onchange="const file = this.files[0]; if(file) { const reader = new FileReader(); reader.onload = function(e) { document.querySelector(&#39;#preview-container&#39;).style.display = &#39;block&#39;; document.querySelector(&#39;#preview-image&#39;).src = e.target.result; document.querySelector(&#39;#upload-content&#39;).style.display = &#39;none&#39;; document.querySelector(&#39;#id-120&#39;).src = e.target.result; }; reader.readAsDataURL(file); }"/>
+                        <div class="mx-auto flex flex-col items-center">
+                            <div id="preview-container" style="display: none; width: 100%; height: 100%;">
+                                <img id="preview-image" src="" style="width: 100%; height: 100%; object-fit: contain;"/>
+                            </div>
+                            <div id="upload-content" class="mx-auto flex flex-col items-center">
+                                <i class="fas fa-cloud-upload-alt text-4xl text-gray-400 mb-4"></i>
+                                <h3 class="text-lg font-medium text-gray-900">Upload Retinal Scan</h3>
+                                <p class="mt-1 text-sm text-gray-500">Drag and drop your file here, or click to browse</p>
+                                <p class="mt-2 text-xs text-gray-400">Supports JPG, PNG, DICOM formats</p>
+                                <div class="mt-4 space-x-4">
+                                    <button class="bg-white !rounded-button text-blue-600 px-6 py-2 text-sm font-medium border border-blue-600 hover:bg-gray-50 inline-flex items-center">
+                                        <i class="fas fa-upload mr-2"></i>Upload
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="space-y-6">
+                        <div class="bg-white rounded-lg border border-gray-200 p-6">
+                            <h3 class="text-lg font-medium text-gray-900 mb-4">Historical Data &amp; Trends</h3>
+                            <p class="text-sm text-gray-500 mb-4">Comprehensive analysis of your retinal health patterns and progression over the past 12 months</p>
+                            <div id="chart" class="h-64"></div>
+                            <div class="grid grid-cols-2 gap-4 mt-4">
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <div class="text-sm font-medium text-gray-500">Scans Analyzed</div>
+                                    <div class="mt-1 text-2xl font-semibold text-gray-900">12</div>
+                                    <div class="text-xs text-gray-400">Total in past year</div>
+                                </div>
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <div class="text-sm font-medium text-gray-500">Risk Level</div>
+                                    <div class="mt-1 text-2xl font-semibold text-green-600">Low</div>
+                                    <div class="text-xs text-gray-400">Based on latest analysis</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+     <script>
+        function switchView(type) {
+            alert('Switching to ' + type + ' view');
+        }
+
+        function shareReport() {
+            alert('Sharing report...');
+        }
+
+        const chart = echarts.init(document.getElementById('chart'));
+        const option = {
+            animation: true,
+            animationDuration: 2000,
+            animationEasing: 'cubicInOut',
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'cross',
+                    label: {
+                        backgroundColor: '#6a7985'
+                    }
+                }
+            },
+            legend: {
+                data: ['Severity Score']
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis: {
+                type: 'category',
+                boundaryGap: false,
+                data: ['Jan', 'Mar', 'May', 'Jul', 'Sep', 'Nov']
+            },
+            yAxis: {
+                type: 'value',
+                splitLine: {
+                    show: true,
+                    lineStyle: {
+                        type: 'dashed'
+                    }
+                }
+            },
+            series: [{
+                name: 'Severity Score',
+                type: 'line',
+                smooth: true,
+                data: [0.3, 0.2, 0.4, 0.3, 0.2, 0.2],
+                animationDelay: function (idx) {
+                    return idx * 100;
+                },
+                areaStyle: {
+                    color: {
+                        type: 'linear',
+                        x: 0,
+                        y: 0,
+                        x2: 0,
+                        y2: 1,
+                        colorStops: [{
+                            offset: 0,
+                            color: 'rgba(14, 165, 233, 0.2)'
+                        }, {
+                            offset: 1,
+                            color: 'rgba(14, 165, 233, 0)'
+                        }]
+                    }
+                },
+                lineStyle: {
+                    color: '#0EA5E9',
+                    width: 2
+                },
+                itemStyle: {
+                    color: '#0EA5E9',
+                    borderWidth: 2
+                },
+                emphasis: {
+                    scale: true,
+                    focus: 'series'
+                }
+            }]
+        };
+
+        chart.setOption(option);
+        window.addEventListener('resize', () => chart.resize());
+
+        document.getElementById('predict-btn').addEventListener('click', function () {
+            document.getElementById('prediction-popup').style.display = 'flex';
+            setTimeout(() => {
+                document.getElementById('id-90').style.width = '100%';
+                document.getElementById('id-88').textContent = 'Analysis complete - Results ready';
+                document.getElementById('id-114').textContent = '9.2';
+            }, 10000);
+            setTimeout(() => {
+                document.getElementById('prediction-popup').style.display = 'none';
+                alert('Analysis complete!');
+            }, 11000);
+        });
+
+        setInterval(() => {
+            document.getElementById('id-114').textContent = '9.2';
+        }, 3600000);
+    </script> 
+    <!-- <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          const sidebar = document.getElementById("sidebar");
+          const mainContent = document.getElementById("mainContent");
+          const sidebarTabs = document
+            .getElementById("sidebarTabs")
+            .querySelectorAll("li");
+          const contentSections = document.querySelectorAll(".content-section");
+          const toggleSidebarBtn = document.getElementById("toggleSidebar");
+          const closeSidebarBtn = document.getElementById("closeSidebar");
+  
+          // Function to toggle sidebar
+          function toggleSidebar() {
+            sidebar.classList.toggle("closed");
+            if (sidebar.classList.contains("closed")) {
+              mainContent.style.marginLeft = "0";
+            } else {
+              mainContent.style.marginLeft = "";
+            }
+          }
+  
+          // Toggle sidebar button
+          toggleSidebarBtn.addEventListener("click", toggleSidebar);
+  
+          // Close sidebar button
+          closeSidebarBtn.addEventListener("click", function () {
+            if (!sidebar.classList.contains("closed")) {
+              toggleSidebar();
+            }
+          });
+  
+          // Tab switching functionality
+          sidebarTabs.forEach((tab) => {
+            tab.addEventListener("click", function () {
+              // Remove active class from all tabs and content sections
+              sidebarTabs.forEach((t) => t.classList.remove("active"));
+              contentSections.forEach((section) =>
+                section.classList.remove("active")
+              );
+  
+              // Add active class to clicked tab
+              this.classList.add("active");
+  
+              // Show corresponding content
+              const tabId = this.getAttribute("data-tab");
+              document.getElementById(tabId).classList.add("active");
+  
+              // On mobile or smaller screens, close the sidebar after tab selection
+              if (window.innerWidth <= 768) {
+                if (!sidebar.classList.contains("closed")) {
+                  toggleSidebar();
+                }
+              }
+            });
+          });
+        });
+      </script>
+ -->

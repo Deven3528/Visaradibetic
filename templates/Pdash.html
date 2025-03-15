@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Diabetic Retinopathy Prediction</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://ai-public.creatie.ai/gen_page/tailwind-custom.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com/3.4.5?plugins=forms@0.5.7,typography@0.5.13,aspect-ratio@0.4.2,container-queries@0.1.1"></script>
+    <script
+      src="https://ai-public.creatie.ai/gen_page/tailwind-config.min.js"
+      data-color="#16BC88"
+      data-border-radius="small"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+  </head>
+  <body class="bg-gray-50 min-h-screen">
+    <style>
+      @keyframes progress {
+        from {
+          width: 0%;
+        }
+        to {
+          width: 100%;
+        }
+      }
+      @keyframes progress {
+        0% {
+          width: 0;
+        }
+        100% {
+          width: 100%;
+        }
+      }
+      .processing-text {
+        display: block;
+      }
+      .completed-text {
+        display: none;
+      }
+      .completed .processing-text {
+        display: none;
+      }
+      .completed .completed-text {
+        display: block;
+      }
+    </style>
+    <div class="min-h-screen flex">
+      <aside class="w-64 bg-white shadow-lg fixed h-full">
+        <div class="p-4 border-b">
+          <img
+            src="https://ai-public.creatie.ai/gen_page/logo_placeholder.png"
+            alt="Logo"
+            class="h-8"
+          />
+        </div>
+        <nav class="mt-6">
+          <a
+            href="patient dashboard.html"
+            class="flex items-center px-4 py-3 bg-custom text-white"
+          >
+            <i class="fas fa-home w-6"></i>
+            <span class="mx-4">Dashboard</span>
+          </a>
+
+          <a
+            href="Paianalysis.html"
+            class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-50"
+          >
+            <i class="fas fa-microscope w-6 fas fa-home w-6"></i>
+            <span class="mx-4">AI Analysis</span>
+          </a>
+
+          <a
+            href="report(Pdash).html"
+            class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-50"
+          >
+            <i class="fas fa-file-medical w-6"></i>
+            <span class="mx-4">Reports</span>
+          </a>
+
+          <a
+            href="appoint section.html"
+            class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-50"
+          >
+            <i class="fas fa-calendar-check w-6"></i>
+            <span class="mx-4">Appointments</span>
+          </a>
+          <a
+            href="yogabot.html"
+            class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-50"
+          >
+            <i class="fas fa-robot w-6"></i>
+            <span class="mx-4">YogaBot</span>
+          </a>
+          <a
+            href="setting.html"
+            class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-50"
+          >
+            <i class="fas fa-cog w-6"></i>
+            <span class="mx-4">Settings</span>
+          </a>
+        </nav>
+      </aside>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Patient Reports - RetAIe Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+    <link href="https://ai-public.creatie.ai/gen_page/tailwind-custom.css" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com/3.4.5?plugins=forms@0.5.7,typography@0.5.13,aspect-ratio@0.4.2,container-queries@0.1.1"></script>
+    <script src="https://ai-public.creatie.ai/gen_page/tailwind-config.min.js" data-color="#1B9AF5" data-border-radius="small"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+    <script>
+        window.history.pushState({}, "", "Pdash.html");
+      </script>
+</head>
+<body class="bg-gray-50 font-sans">
+    <nav class="bg-white shadow fixed h-full w-64">
+        <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8"></div>
+        
+                    <div class="flex flex-col space-y-4 mt-8">
+                       
+                        <aside class="w-64 bg-white shadow-lg fixed h-full">
+                            <div class="p-4 border-b">
+                                <img
+                                  src="https://ai-public.creatie.ai/gen_page/logo_placeholder.png"
+                                  alt="Logo"
+                                  class="h-8"
+                                />
+                              </div>    
+                            <nav class="mt-6">
+                                <a href="patientdashboard.html" class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-50">
+                                    <i class="fas fa-home w-6"></i>
+                                    <span class="mx-4">Dashboard</span>
+                                </a>
+                                
+                                <a href="AI Analyis(Pdash).html" class="flex items-center px-4 py-3 ">
+                                    <i class="fas fa-microscope w-6"></i>
+                                    <span class="mx-4">AI Analysis</span>
+                                    
+                                </a>
+                            
+                                
+                                <a href="report(Pdash).html" class="flex items-center px-4 py-3 bg-custom text-white">
+                                    <i class="fas fa-file-medical w-6"></i>
+                                    <span class="mx-4">Reports</span>
+                                </a>
+                            
+                                <a href="appoint section.html" class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-50">
+                                    <i class="fas fa-calendar-check w-6"></i>
+                                    <span class="mx-4">Appointments</span>
+                                </a>
+                                <a href="yogabot.html" class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-50">
+                                    <i class="fas fa-robot w-6"></i>
+                                    <span class="mx-4">YogaBot</span>
+                                </a>
+                                <a href="setting.html" class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-50">
+                                    <i class="fas fa-cog w-6"></i>
+                                    <span class="mx-4">Settings</span>
+                                </a>
+                            </nav>
+                        </aside>
+                        
+                        <a href="/reports" class="border-custom text-gray-900 flex items-center px-4 py-2 border-l-4 text-sm font-medium">
+                            <i class="fas fa-file-medical mr-2"></i>Reports
+                        </a>
+                        <a href="/dashboard" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 flex items-center px-4 py-2 border-l-4 text-sm font-medium">
+                            <i class="fas fa-gauge-high mr-2"></i>Dashboard
+                        </a>
+                        <a href="/appointments" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 flex items-center px-4 py-2 border-l-4 text-sm font-medium">
+                            <i class="fas fa-calendar-check mr-2"></i>Appointments
+                        </a>
+                        <a href="/settings" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 flex items-center px-4 py-2 border-l-4 text-sm font-medium"></a>
+                            <i class="fas fa-gear mr-2"></i>Settings
+                        </a>
+                        <a href="/analytics" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 flex items-center px-4 py-2 border-l-4 text-sm font-medium">
+                            <i class="fas fa-chart-line mr-2"></i>Analytics
+                        </a>
+                        <a href="/patients" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 flex items-center px-4 py-2 border-l-4 text-sm font-medium">
+                            <i class="fas fa-user-group mr-2"></i>Patients
+                        </a>
+                        <a href="/profile" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 flex items-center px-4 py-2 border-l-4 text-sm font-medium">
+                            <i class="fas fa-user mr-2"></i>Profile
+                        </a>
+                    </div>
+                </div>
+                <div class="flex items-center px-4 mt-auto mb-8">
+                    <button type="button" class="rounded-full bg-white p-1 text-gray-400 hover:text-gray-500" onclick="window.location.href='/notifications'">
+                        <i class="fas fa-bell text-lg"></i>
+                    </button>
+                    <div class="ml-3 relative">
+                        <div class="flex items-center"></div>
+                            <img class="h-8 w-8 rounded-full" src="https://creatie.ai/ai/api/search-image?query=A professional headshot of a middle-aged person with a friendly smile, wearing business casual attire, against a neutral background. The image should be well-lit and clear, suitable for a medical patient profile picture.&width=100&height=100&orientation=squarish&flag=199f7e55-26c5-4e36-ade0-6159f02a6557&flag=79963356-4a62-44bd-b1d2-d3cbd4957be6&flag=f22b9b07-607e-4ced-9517-bb2b5b07a53e&flag=3ff7b142-15a7-4997-b792-108bb9713867&flag=ea3a8aee-3782-4aac-8d78-46b4e9b8adfd&flag=61840d14-d12d-4dc6-a726-4fc7d5b2e736&flag=7d8fbe4e-abc0-420f-b5a9-3749360a4c0f&flag=5b6362eb-0f53-4485-8e52-9b1be03ccbba&flag=987b7354-139e-4b8f-8e31-e0ec44b4dea6&flag=17807ca1-520d-42dc-abc4-2745f1ba2a8d&flag=96a94c1d-d3c6-4a53-93ec-4c5dedf36467&flag=cbb313d8-aeb0-4f92-853c-34edd7e11a5f&flag=29bc9b02-a2cd-45b3-a5eb-15ec3f161aa8&flag=301f8a3f-3b95-452f-9654-9cc193d68b6d&flag=2f9ae24e-52d0-4963-9b92-fad79c710cd0" alt=""/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main class="ml-64 max-w-8xl px-4 sm:px-6 lg:px-8 py-8">
+        <div class="mb-8">
+            <div class="sm:flex sm:items-center sm:justify-between"></div>
+                <div>
+                    <h1 class="text-2xl font-semibold text-gray-900">Medical Reports</h1>
+                    <nav class="flex mt-2" aria-label="Breadcrumb">
+                        <ol class="flex items-center space-x-2">
+                            <li><a href="/dashboard" class="text-sm text-gray-500 hover:text-gray-700">Dashboard</a></li>
+                            <li class="text-sm text-gray-500">/</li>
+                            <li class="text-sm text-custom font-medium">Reports</li>
+                        </ol>
+                    </nav>
+                </div>
+                <button class="!rounded-button mt-4 sm:mt-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700" onclick="window.location.href='/download-report'">
+                    <i class="fas fa-download mr-2"></i>
+                    Download Latest Report
+                </button>
+            </div>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="lg:col-span-2">
+                <div class="bg-white shadow rounded-lg p-6 mb-8">
+                    <div class="flex justify-between items-start mb-6">
+                        <div>
+                            <h2 class="text-lg font-medium text-gray-900">Latest AI Retina Scan Results</h2>
+                            <p class="mt-1 text-sm text-gray-500">Analyzed on March 15, 2024</p>
+                        </div>
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800 animate-pulse">
+                            <i class="fas fa-check-circle mr-2"></i>
+                            Normal
+                        </span>
+                    </div>
+                    <div class="border-t border-gray-200 pt-6">
+                        <dl class="grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-2">
+                            <div>
+                                <dt class="text-sm font-medium text-gray-500">Retinal Health Score</dt>
+                                <dd class="mt-1 text-lg font-semibold text-gray-900">92/100</dd>
+                            </div>
+                            <div>
+                                <dt class="text-sm font-medium text-gray-500">Blood Vessel Condition</dt>
+                                <dd class="mt-1 text-lg font-semibold text-gray-900">Healthy</dd>
+                            </div>
+                            <div>
+                                <dt class="text-sm font-medium text-gray-500">Macular Status</dt>
+                                <dd class="mt-1 text-lg font-semibold text-gray-900">Normal</dd>
+                            </div>
+                            <div>
+                                <dt class="text-sm font-medium text-gray-500">Next Check-up</dt>
+                                <dd class="mt-1 text-lg font-semibold text-gray-900">June 15, 2024</dd>
+                            </div>
+                        </dl>
+                    </div>
+                </div>
+                <div class="bg-white shadow rounded-lg p-6">
+                    <h2 class="text-lg font-medium text-gray-900 mb-6">Health Progress Trend</h2>
+                    <div id="healthChart" class="w-full h-64"></div>
+                </div>
+            </div>
+            <div class="lg:col-span-1">
+                <div class="bg-white shadow rounded-lg p-6 mb-8">
+                    <h2 class="text-lg font-medium text-gray-900 mb-6">Doctor's Notes</h2>
+                    <div class="space-y-6">
+                        <div class="border-b border-gray-200 pb-4">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-sm font-medium text-gray-900">Dr. Sarah Johnson</span>
+                                <span class="text-sm text-gray-500">March 15, 2024</span>
+                            </div>
+                            <p class="text-sm text-gray-600">Patient's retinal health shows excellent progress. Continue with current treatment plan and maintain regular check-ups.</p>
+                        </div>
+                        <div class="border-b border-gray-200 pb-4">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-sm font-medium text-gray-900">Dr. Michael Chen</span>
+                                <span class="text-sm text-gray-500">February 1, 2024</span>
+                            </div>
+                            <p class="text-sm text-gray-600">Minor improvements needed in blood vessel health. Recommended increased intake of eye-healthy nutrients.</p>
+                        </div>
+                        <button class="!rounded-button w-full mt-4 text-sm text-custom hover:text-custom/90 font-medium" onclick="window.location.href='/all-notes'">
+                            View All Notes
+                            <i class="fas fa-chevron-right ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="bg-white shadow rounded-lg p-6 mb-8" id="schedule-widget" style="display: none;">
+                    <h2 class="text-lg font-medium text-gray-900 mb-4">Schedule Follow-up</h2>
+                    <div class="space-y-4">
+                        <div class="flex flex-col">
+                            <label class="text-sm font-medium text-gray-700 mb-1">Preferred Date</label>
+                            <input type="date" class="rounded-md border-gray-300 shadow-sm focus:border-custom focus:ring-custom"/>
+                        </div>
+                        <div class="flex flex-col">
+                            <label class="text-sm font-medium text-gray-700 mb-1">Preferred Time</label>
+                            <select class="rounded-md border-gray-300 shadow-sm focus:border-custom focus:ring-custom">
+                                <option>09:00 AM</option>
+                                <option>10:00 AM</option>
+                                <option>11:00 AM</option>
+                                <option>02:00 PM</option>
+                                <option>03:00 PM</option>
+                                <option>04:00 PM</option>
+                            </select>
+                        </div>
+                        <div class="flex flex-col">
+                            <label class="text-sm font-medium text-gray-700 mb-1">Doctor</label>
+                            <select class="rounded-md border-gray-300 shadow-sm focus:border-custom focus:ring-custom">
+                                <option>Dr. Sarah Johnson</option>
+                                <option>Dr. Michael Chen</option>
+                            </select>
+                        </div>
+                        <button class="!rounded-button w-full mt-4 px-4 py-2 border border-transparent shadow-sm text-sm font-medium text-white bg-custom hover:bg-custom/90">
+                            Confirm Appointment
+                        </button>
+                    </div>
+                </div>
+                <div class="bg-white shadow rounded-lg p-6">
+                    <h2 class="text-lg font-medium text-gray-900 mb-6">Quick Actions</h2>
+                    <div class="space-y-4">
+                        <button class="!rounded-button w-full flex items-center justify-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 transition duration-150 ease-in-out hover:shadow-md" onclick="const scheduleWidget = document.getElementById('schedule-widget'); scheduleWidget.style.display = scheduleWidget.style.display === 'none' ? 'block' : 'none';">
+                            <i class="fas fa-calendar-plus mr-2"></i>
+                            Schedule Follow-up
+                        </button>
+                        <button class="!rounded-button w-full flex items-center justify-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 transition duration-150 ease-in-out hover:shadow-md" onclick="navigator.share({title: 'Medical Report', text: 'My RetAIe Medical Report', url: window.location.href})">
+                            <i class="fas fa-share-alt mr-2"></i>
+                            Share with Doctor
+                        </button>
+                        <button class="!rounded-button w-full flex items-center justify-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 transition duration-150 ease-in-out hover:shadow-md" onclick="window.print()">
+                            <i class="fas fa-print mr-2"></i>
+                            Print Report
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+        const healthChart = echarts.init(document.getElementById('healthChart'));
+        const option = {
+            animation: true,
+            animationDuration: 1000,
+            animationEasing: 'cubicInOut',
+            tooltip: { trigger: 'axis' },
+            grid: { left: '3%', right: '4%', bottom: '3%', containLabel: true },
+            xAxis: { type: 'category', data: ['Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar'], boundaryGap: false },
+            yAxis: { type: 'value', min: 60, max: 100 },
+            series: [{
+                name: 'Retinal Health Score',
+                type: 'line',
+                smooth: true,
+                data: [75, 78, 82, 85, 88, 92],
+                itemStyle: { color: '#4F46E5' },
+                areaStyle: {
+                    color: {
+                        type: 'linear',
+                        x: 0,
+                        y: 0,
+                        x2: 0,
+                        y2: 1,
+                        colorStops: [
+                            { offset: 0, color: 'rgba(79, 70, 229, 0.2)' },
+                            { offset: 1, color: 'rgba(79, 70, 229, 0)' }
+                        ]
+                    }
+                }
+            }]
+        };
+        healthChart.setOption(option);
+        window.addEventListener('resize', () => { healthChart.resize(); });
+
+        function beforePrint() {
+            document.getElementById('id-13').style.display = 'none';
+            document.getElementById('id-40').style.margin = '0';
+            const elements = document.body.children;
+            for (let i = 0; i < elements.length; i++) {
+                if (elements[i].id !== 'id-40') {
+                    elements[i].style.display = 'none';
+                }
+            }
+        }
+
+        function afterPrint() {
+            document.getElementById('id-13').style.display = 'block';
+            document.getElementById('id-40').style.marginLeft = '16rem';
+            const elements = document.body.children;
+            for (let i = 0; i < elements.length; i++) {
+                if (elements[i].id !== 'id-40') {
+                    elements[i].style.display = '';
+                }
+            }
+        }
+
+        window.onbeforeprint = beforePrint;
+        window.onafterprint = afterPrint;
+    </script>
+</body>
+</html>
