@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Doctor's Appointment Management</title>
+    <!-- Fonts and Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+    <!-- Tailwind CSS -->
+    <link href="https://ai-public.creatie.ai/gen_page/tailwind-custom.css" rel="stylesheet"/>
+    <link href="main.css"
+    rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+    <script src="https://cdn.tailwindcss.com/3.4.5?plugins=forms@0.5.7,typography@0.5.13,aspect-ratio@0.4.2,container-queries@0.1.1"></script>
+    <script src="https://ai-public.creatie.ai/gen_page/tailwind-config.min.js" data-color="#000000" data-border-radius="small"></script>
+    <script>
+        window.history.pushState({}, "", "doctor_dashboard.html");
+      </script>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-sm">
+        <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
+            <aside class="w-64 bg-white border-r border-gray-200 fixed h-full">
+                <div class="flex items-center justify-center h-16 border-b border-gray-200">
+                    <img src="https://ai-public.creatie.ai/gen_page/logo_placeholder.png" alt="Logo" class="h-8"/>
+                </div>
+                <nav class="mt-6">
+                    <div class="px-4 space-y-2">
+                        <a href="{{ url_for('Ddash') }}" class="flex items-center px-4 py-3  ">
+                            <i class="fas fa-chart-line w-5 h-5 mr-3"></i>
+                            Dashboard
+                        </a>
+                        <a href="{{ url_for('DPatientmgmt') }}" class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-50">
+                            <i class="fas fa-user-group w-5 h-5 mr-3"></i>
+                            Patient Management
+                        </a>
+                        <a href="{{ url_for('Danalysis') }}" class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-50">
+                            <i class="fas fa-brain w-5 h-5 mr-3"></i>
+                            AI Analysis
+                        </a>
+                        <a href="{{ url_for('DReport') }}" class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-50">
+                            <i class="fas fa-chart-bar w-5 h-5 mr-3"></i>
+                            Reports &amp; Insights
+                        </a>
+                        <a href="{{ url_for('Dappointment') }}" class="flex items-center  px-4 py-3 bg-custom text-white">
+                            <i class="fas fa-calendar-alt w-5 h-5 mr-3"></i>
+                            Appointments
+                        </a>
+                        <a href="{{ url_for('Dsetting') }}" class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-50">
+                            <i class="fas fa-cog w-5 h-5 mr-3"></i>
+                            Settings
+                        </a>
+                    </div>
+                </nav>
+            </aside>
+            <div class="hello flex justify-between h-16">
+                <div class="flex items-center">
+                    
+                    <!-- <img src="https://ai-public.creatie.ai/gen_page/logo_placeholder.png" alt="Logo" class="h-8 w-auto"/> -->
+                    <div class="ml-10 flex space-x-8">
+                        <a href="#" class="text-custom border-b-2 border-custom px-1 py-2 text-sm font-medium">Dashboard</a>
+                        <a href="#" class="text-gray-500 hover:text-gray-700 px-1 py-2 text-sm font-medium">Appointments</a>
+                        <a href="#" class="text-gray-500 hover:text-gray-700 px-1 py-2 text-sm font-medium">Patients</a>
+                        <a href="#" class="text-gray-500 hover:text-gray-700 px-1 py-2 text-sm font-medium">Calendar</a>
+                    </div>
+                </div>
+                <div class="flex items-center">
+                    <button class="p-2 rounded-full text-gray-400 hover:text-gray-500">
+                        <i class="fas fa-bell text-xl"></i>
+                        <span class="bg-red-500 absolute w-2 h-2 rounded-full top-4 right-[7.5rem]"></span>
+                    </button>
+                    <div class="ml-4 flex items-center"></div>
+                        <img class="h-8 w-8 rounded-full object-cover" src="https://creatie.ai/ai/api/search-image?query=A professional headshot of a male doctor wearing a white coat and stethoscope, looking confident and approachable, against a neutral background&width=200&height=200&orientation=squarish&flag=c7a485f9-3100-4057-a701-8ec82b10593f&flag=e45b9298-6afc-40bc-bead-5c55705975ba" alt="Doctor profile"/>
+                        <span class="ml-2 text-sm font-medium text-gray-700">Dr. John Smith</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Main Content -->
+    <main class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Statistics Cards -->
+        <div class=" hello mb-8 grid grid-cols-4 gap-4">
+            <!-- Today's Appointments -->
+            <div class="bg-white rounded-lg shadow p-6">
+                <div class="flex items-center">
+                    <div class="p-3 rounded-full bg-custom bg-opacity-10">
+                        <i class="fas fa-calendar-check text-custom"></i>
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-sm font-medium text-gray-500">Today's Appointments</p>
+                        <h3 class="text-xl font-semibold text-gray-900">8</h3>
+                    </div>
+                </div>
+            </div>
+            <!-- Pending Requests -->
+            <div class="  bg-white rounded-lg shadow p-6">
+                <div class="flex items-center">
+                    <div class="p-3 rounded-full bg-yellow-100">
+                        <i class="fas fa-clock text-yellow-600"></i>
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-sm font-medium text-gray-500">Pending Requests</p>
+                        <h3 class="text-xl font-semibold text-gray-900">5</h3>
+                    </div>
+                </div>
+            </div>
+            <!-- Completed -->
+            <div class="bg-white rounded-lg shadow p-6">
+                <div class="flex items-center">
+                    <div class="p-3 rounded-full bg-green-100">
+                        <i class="fas fa-check-circle text-green-600"></i>
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-sm font-medium text-gray-500">Completed</p>
+                        <h3 class="text-xl font-semibold text-gray-900">12</h3>
+                    </div>
+                </div>
+            </div>
+            <!-- Cancelled -->
+            <div class="bg-white rounded-lg shadow p-6">
+                <div class="flex items-center">
+                    <div class="p-3 rounded-full bg-red-100">
+                        <i class="fas fa-times-circle text-red-600"></i>
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-sm font-medium text-gray-500">Cancelled</p>
+                        <h3 class="text-xl font-semibold text-gray-900">2</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Upcoming Appointments -->
+        <div class=" hello mb-8 bg-white rounded-lg shadow">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-lg font-semibold text-gray-900">Upcoming Appointments</h2>
+                    <div class="flex space-x-4">
+                        <div class="relative">
+                            <input type="text" placeholder="Search patients..." class="w-64 pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-custom focus:border-custom"/>
+                            <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                        </div>
+                        <button class="bg-custom text-white px-4 py-2 rounded-lg !rounded-button">
+                            <i class="fas fa-filter mr-2"></i>Filter
+                        </button>
+                    </div>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full">
+                        <thead>
+                            <tr class="border-b border-gray-200">
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Patient</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date & Time</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            <!-- Appointment Row 1 -->
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <img class="h-10 w-10 rounded-full" src="https://creatie.ai/ai/api/search-image?query=A professional headshot of a young woman with a friendly smile against a neutral background&width=200&height=200&orientation=squarish&flag=fc1773d9-6308-43ca-92e4-01174d49e316&flag=0d302985-8682-4dc2-84c8-038f51e8e1ee" alt=""/>
+                                        <div class="ml-4">
+                                            <div class="text-sm font-medium text-gray-900">Sarah Johnson</div>
+                                            <div class="text-sm text-gray-500">ID: #12345</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-gray-900">Today, 10:00 AM</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-gray-900">Check-up</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">Pending</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                    <button class="text-custom hover:text-custom-dark mr-3">Accept</button>
+                                    <button class="text-yellow-600 hover:text-yellow-700 mr-3">Reschedule</button>
+                                    <button class="text-red-600 hover:text-red-700">Cancel</button>
+                                </td>
+                            </tr>
+                            <!-- Appointment Row 2 -->
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <img class="h-10 w-10 rounded-full" src="https://creatie.ai/ai/api/search-image?query=A professional headshot of a middle-aged man with glasses against a neutral background&width=200&height=200&orientation=squarish&flag=1a3a3a38-884b-4e34-bb5d-f040eba3fa3e&flag=ccd46f66-86a0-4577-9112-c6fbf97cd6e4" alt=""/>
+                                        <div class="ml-4">
+                                            <div class="text-sm font-medium text-gray-900">Michael Brown</div>
+                                            <div class="text-sm text-gray-500">ID: #12346</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-gray-900">Today, 11:30 AM</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-gray-900">Follow-up</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Confirmed</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                    <button class="text-yellow-600 hover:text-yellow-700 mr-3">Reschedule</button>
+                                    <button class="text-red-600 hover:text-red-700">Cancel</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- Appointment Statistics and Recent Activities -->
+        <div class="hello grid grid-cols-2 gap-8">
+            <!-- Appointment Statistics -->
+            <div class="bg-white rounded-lg shadow p-6">
+                <h2 class="text-lg font-semibold text-gray-900 mb-6">Appointment Statistics</h2>
+                <div id="appointmentChart" class="h-64"></div>
+            </div>
+            <!-- Recent Activities -->
+            <div class="bg-white rounded-lg shadow p-6">
+                <h2 class="text-lg font-semibold text-gray-900 mb-6">Recent Activities</h2>
+                <div class="space-y-4">
+                    <!-- Activity 1 -->
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0">
+                            <div class="h-8 w-8 rounded-full bg-green-100 flex items-center justify-center">
+                                <i class="fas fa-check text-green-600"></i>
+                            </div>
+                        </div>
+                        <div class="ml-4">
+                            <p class="text-sm font-medium text-gray-900">Appointment confirmed with Sarah Johnson</p>
+                            <p class="text-sm text-gray-500">5 minutes ago</p>
+                        </div>
+                    </div>
+                    <!-- Activity 2 -->
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0">
+                            <div class="h-8 w-8 rounded-full bg-yellow-100 flex items-center justify-center">
+                                <i class="fas fa-clock text-yellow-600"></i>
+                            </div>
+                        </div>
+                        <div class="ml-4">
+                            <p class="text-sm font-medium text-gray-900">New appointment request from Michael Brown</p>
+                            <p class="text-sm text-gray-500">10 minutes ago</p>
+                        </div>
+                    </div>
+                    <!-- Activity 3 -->
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0">
+                            <div class="h-8 w-8 rounded-full bg-red-100 flex items-center justify-center">
+                                <i class="fas fa-times text-red-600"></i>
+                            </div>
+                        </div>
+                        <div class="ml-4">
+                            <p class="text-sm font-medium text-gray-900">Appointment cancelled by David Wilson</p>
+                            <p class="text-sm text-gray-500">30 minutes ago</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- ECharts Script -->
+    <script>
+        const chart = echarts.init(document.getElementById('appointmentChart'));
+        const option = {
+            animation: true,
+            animationDuration: 1500,
+            animationEasing: 'cubicInOut',
+            tooltip: { trigger: 'axis' },
+            legend: { data: ['Appointments'] },
+            grid: { left: '3%', right: '4%', bottom: '3%', containLabel: true },
+            xAxis: { type: 'category', data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] },
+            yAxis: { type: 'value' },
+            series: [{
+                name: 'Appointments',
+                type: 'line',
+                data: [8, 6, 10, 7, 9, 4, 3],
+                itemStyle: { color: '#4F46E5' },
+                animationDelay: function (idx) { return idx * 100; }
+            }]
+        };
+        chart.setOption(option);
+    </script>
+</body>
+</html>

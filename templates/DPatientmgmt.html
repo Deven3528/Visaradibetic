@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Doctor Dashboard - Patient Management</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://ai-public.creatie.ai/gen_page/tailwind-custom.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+    <script src="https://cdn.tailwindcss.com/3.4.5?plugins=forms@0.5.7,typography@0.5.13,aspect-ratio@0.4.2,container-queries@0.1.1"></script>
+    <script
+      src="https://ai-public.creatie.ai/gen_page/tailwind-config.min.js"
+      data-color="#000000"
+      data-border-radius="small"
+    ></script>
+    <script>
+      window.history.pushState({}, "", "doctor_dashboard.html");
+    </script>
+  </head>
+  <body class="bg-gradient-to-br from-green-50 to-green-100 font-sans">
+    <div class="min-h-screen flex">
+      <aside
+        class="w-64 bg-white/90 backdrop-blur-sm border-r border-gray-200 fixed h-full"
+      >
+        <div
+          class="flex items-center justify-center h-16 border-b border-gray-200"
+        >
+          <img
+            src="https://ai-public.creatie.ai/gen_page/logo_placeholder.png"
+            alt="WebDoctor"
+            class="h-8"
+          />
+        </div>
+        <nav class="mt-6">
+          <div class="px-4 space-y-2">
+            <a
+              href="{{ url_for('Ddash') }}"
+              class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-50"
+            >
+              <i class="fas fa-home w-5 h-5 mr-3"></i>Dashboard
+            </a>
+            <a
+              href="{{ url_for('DPatientmgmt') }}"
+              class="flex items-center px-4 py-3 bg-custom text-white"
+            >
+              <i class="fas fa-user-group w-5 h-5 mr-3"></i>Patient Management
+            </a>
+            <a
+              href="{{ url_for('Danalysis') }}"
+              class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-50"
+            >
+              <i class="fas fa-brain w-5 h-5 mr-3"></i>AI Analysis
+            </a>
+            <a
+              href="{{ url_for('DReport') }}"
+              class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-50"
+            >
+              <i class="fas fa-chart-bar w-5 h-5 mr-3"></i>Reports & Insights
+            </a>
+            <a
+              href="{{ url_for('DAppointments') }}"
+              class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-50"
+            >
+              <i class="fas fa-calendar-check w-5 h-5 mr-3"></i>Appointments
+            </a>
+            <a
+              href="{{ url_for('DSettings') }}"
+              class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-50"
+            >
+              <i class="fas fa-cog w-5 h-5 mr-3"></i>Settings
+            </a>
+          </div>
+        </nav>
+      </aside>
+      <main class="flex-1 ml-64">
+        <header class="bg-white/80 backdrop-blur-sm shadow-sm">
+          <div
+            class="max-w-8xl mx-auto px-6 py-4 flex items-center justify-between"
+          >
+            <h1 class="text-2xl font-semibold text-gray-900">
+              Patient Management
+            </h1>
+            <div class="flex items-center space-x-4">
+              <button
+                class="!rounded-button bg-white px-4 py-2 border border-gray-300 text-gray-700 flex items-center"
+              >
+                <i class="fas fa-bell text-gray-400 mr-2"></i>
+                <span
+                  class="bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center"
+                  >3</span
+                >
+              </button>
+              <div class="flex items-center">
+                <img
+                  src="https://creatie.ai/ai/api/search-image?query=A professional headshot of a male doctor wearing a white coat and stethoscope, with a warm and confident expression, against a clean light blue background&width=40&height=40&orientation=squarish&flag=3ba035a5-6fe6-4211-9710-320fdc98e991&flag=ece722b8-98d5-4a10-8abb-98ad28f36b83&flag=f8ad88cc-2281-40a2-be23-1d556147e0c6"
+                  class="h-10 w-10 rounded-full"
+                  alt="Doctor profile"
+                />
+                <div class="ml-3">
+                  <p class="text-sm font-medium text-gray-700">
+                    Dr. John Smith
+                  </p>
+                  <p class="text-xs text-gray-500">Ophthalmologist</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </header>
+        <div class="max-w-8xl mx-auto px-6 py-8">
+          <div class="mb-8 flex items-center justify-between">
+            <div class="relative flex-1 max-w-lg">
+              <input
+                type="text"
+                placeholder="Search patients..."
+                class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-custom focus:border-custom"
+              />
+              <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+            </div>
+            <div class="flex space-x-4">
+              <button
+                class="!rounded-button bg-custom text-white px-4 py-2 flex items-center"
+              >
+                <i class="fas fa-plus mr-2"></i>
+                Add Patient
+              </button>
+              <button
+                class="!rounded-button bg-white border border-gray-300 px-4 py-2"
+              >
+                <i class="fas fa-filter text-gray-600"></i>
+              </button>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+            <div class="bg-white/80 backdrop-blur-sm rounded-lg p-6 shadow-sm">
+              <div class="flex items-center justify-between mb-4">
+                <h3 class="text-lg font-medium text-gray-900">
+                  Total Patients
+                </h3>
+                <span class="text-custom"
+                  ><i class="fas fa-user-group"></i
+                ></span>
+              </div>
+              <p class="text-3xl font-semibold text-gray-900">1,284</p>
+              <p class="text-sm text-green-600 mt-2">
+                <i class="fas fa-arrow-up mr-1"></i>8.2% increase
+              </p>
+            </div>
+            <div class="bg-white/80 backdrop-blur-sm rounded-lg p-6 shadow-sm">
+              <div class="flex items-center justify-between mb-4">
+                <h3 class="text-lg font-medium text-gray-900">
+                  Critical Cases
+                </h3>
+                <span class="text-red-500"
+                  ><i class="fas fa-triangle-exclamation"></i
+                ></span>
+              </div>
+              <p class="text-3xl font-semibold text-gray-900">26</p>
+              <p class="text-sm text-red-600 mt-2">
+                <i class="fas fa-arrow-up mr-1"></i>3 new cases
+              </p>
+            </div>
+            <div class="bg-white/80 backdrop-blur-sm rounded-lg p-6 shadow-sm">
+              <div class="flex items-center justify-between mb-4">
+                <h3 class="text-lg font-medium text-gray-900">Recovery Rate</h3>
+                <span class="text-green-500"
+                  ><i class="fas fa-chart-line"></i
+                ></span>
+              </div>
+              <p class="text-3xl font-semibold text-gray-900">
+                <span id="recovery-rate">Loading...</span>
+              </p>
+              <p class="text-sm text-green-600 mt-2">
+                <span id="recovery-trend">Loading...</span>
+              </p>
+            </div>
+          </div>
+          <div class="bg-white/80 backdrop-blur-sm rounded-lg shadow-sm">
+            <div class="p-6 border-b border-gray-200">
+              <h2 class="text-lg font-medium text-gray-900">Recent Patients</h2>
+            </div>
+            <div class="overflow-x-auto">
+              <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th
+                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    >
+                      Patient
+                    </th>
+                    <th
+                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    >
+                      Status
+                    </th>
+                    <th
+                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    >
+                      Last Visit
+                    </th>
+                    <th
+                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    >
+                      Risk Level
+                    </th>
+                    <th
+                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    >
+                      Actions
+                    </th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                      <div class="flex items-center">
+                        <img
+                          src="https://creatie.ai/ai/api/search-image?query=A professional headshot of a middle-aged woman with a friendly smile, wearing casual attire, against a clean light background&width=40&height=40&orientation=squarish&flag=95b6eeec-c481-4212-a409-32dec07c3729&flag=4d83b191-d3bc-47f5-856a-7cd0ef017ee2&flag=0c8bf2f6-ebcc-4801-94bc-96a9d277bbe2"
+                          class="h-10 w-10 rounded-full"
+                          alt="Patient"
+                        />
+                        <div class="ml-4">
+                          <div class="text-sm font-medium text-gray-900">
+                            Sarah Johnson
+                          </div>
+                          <div class="text-sm text-gray-500">#PT-0192</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                      <span
+                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"
+                        >Active</span
+                      >
+                    </td>
+                    <td
+                      class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
+                    >
+                      Jan 15, 2024
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                      <span
+                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800"
+                        >Medium</span
+                      >
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                      <button class="text-custom hover:text-custom-dark mr-3">
+                        <i class="fas fa-eye"></i>
+                      </button>
+                      <button class="text-custom hover:text-custom-dark mr-3">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <button class="text-red-600 hover:text-red-900">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                      <div class="flex items-center">
+                        <img
+                          src="https://creatie.ai/ai/api/search-image?query=A professional headshot of an elderly man with gray hair and glasses, wearing a casual shirt, against a clean light background&width=40&height=40&orientation=squarish&flag=e910063a-862f-47d9-886b-5116fa4def9c&flag=b5a6b422-e2f7-4add-9e1f-5f59f6266130&flag=07d409c4-aa3f-4366-8e0d-4324fe8e22dc"
+                          class="h-10 w-10 rounded-full"
+                          alt="Patient"
+                        />
+                        <div class="ml-4">
+                          <div class="text-sm font-medium text-gray-900">
+                            Robert Chen
+                          </div>
+                          <div class="text-sm text-gray-500">#PT-0193</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                      <span
+                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800"
+                        >Critical</span
+                      >
+                    </td>
+                    <td
+                      class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
+                    >
+                      Jan 14, 2024
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                      <span
+                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800"
+                        >High</span
+                      >
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                      <button class="text-custom hover:text-custom-dark mr-3">
+                        <i class="fas fa-eye"></i>
+                      </button>
+                      <button class="text-custom hover:text-custom-dark mr-3">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <button class="text-red-600 hover:text-red-900">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="bg-white px-4 py-3 border-t border-gray-200 sm:px-6">
+              <div class="flex items-center justify-between">
+                <div class="flex-1 flex justify-between sm:hidden">
+                  <button
+                    class="!rounded-button relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium text-gray-700 bg-white hover:bg-gray-50"
+                  >
+                    Previous
+                  </button>
+                  <button
+                    class="!rounded-button ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium text-gray-700 bg-white hover:bg-gray-50"
+                  >
+                    Next
+                  </button>
+                </div>
+                <div
+                  class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between"
+                >
+                  <div>
+                    <p class="text-sm text-gray-700">
+                      Showing <span class="font-medium">1</span> to
+                      <span class="font-medium">10</span> of
+                      <span class="font-medium">97</span> results
+                    </p>
+                  </div>
+                  <div>
+                    <nav
+                      class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px"
+                      aria-label="Pagination"
+                    >
+                      <button
+                        class="!rounded-button relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+                      >
+                        <span class="sr-only">Previous</span>
+                        <i class="fas fa-chevron-left"></i>
+                      </button>
+                      <button
+                        class="!rounded-button relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50"
+                      >
+                        1
+                      </button>
+                      <button
+                        class="!rounded-button relative inline-flex items-center px-4 py-2 border border-gray-300 bg-custom text-sm font-medium text-white"
+                      >
+                        2
+                      </button>
+                      <button
+                        class="!rounded-button relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50"
+                      >
+                        3
+                      </button>
+                      <button
+                        class="!rounded-button relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+                      >
+                        <span class="sr-only">Next</span>
+                        <i class="fas fa-chevron-right"></i>
+                      </button>
+                    </nav>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+      <div
+        id="patient-details-panel"
+        class="fixed right-0 top-0 w-96 h-full bg-white shadow-lg transform translate-x-full transition-transform duration-300 ease-in-out overflow-y-auto"
+      >
+        <div class="p-6 border-b border-gray-200">
+          <div class="flex items-center justify-between mb-4">
+            <h2 class="text-lg font-medium text-gray-900">Patient Details</h2>
+            <button
+              class="text-gray-500 hover:text-gray-700"
+              onclick="togglePanel()"
+            >
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+          <div class="flex items-center">
+            <img
+              src="https://creatie.ai/ai/api/search-image?query=A professional headshot of a middle-aged woman with a friendly smile, wearing casual attire, against a clean light background&width=64&height=64&orientation=squarish&flag=f6ffaa38-9be2-49b6-afda-657e258a272c&flag=2aaaae55-ca0a-4917-b93c-f50b97e424ba&flag=c7bca901-77bc-4d66-b2e4-bc6d7e777512"
+              class="h-16 w-16 rounded-full"
+              alt="Patient"
+            />
+            <div class="ml-4">
+              <h3 class="text-lg font-medium text-gray-900">Sarah Johnson</h3>
+              <p class="text-sm text-gray-500">Female, 45 years</p>
+              <p class="text-sm text-gray-500">#PT-0192</p>
+            </div>
+          </div>
+        </div>
+        <div class="p-6">
+          <div class="mb-6">
+            <h4 class="text-sm font-medium text-gray-500 uppercase mb-3">
+              Latest Diagnosis
+            </h4>
+            <div class="bg-gray-50 rounded-lg p-4">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-sm font-medium text-gray-900"
+                  >Diabetic Retinopathy</span
+                >
+                <span
+                  class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800"
+                  >Stage 2</span
+                >
+              </div>
+              <p class="text-sm text-gray-600">
+                Moderate nonproliferative diabetic retinopathy with macular
+                edema
+              </p>
+            </div>
+          </div>
+          <div class="mb-6">
+            <h4 class="text-sm font-medium text-gray-500 uppercase mb-3">
+              Recent Activity
+            </h4>
+            <div class="space-y-4">
+              <div class="flex items-start">
+                <div class="flex-shrink-0">
+                  <div
+                    class="h-8 w-8 rounded-full bg-blue-100 flex items-center justify-center"
+                  >
+                    <i class="fas fa-calendar text-custom"></i>
+                  </div>
+                </div>
+                <div class="ml-3">
+                  <p class="text-sm font-medium text-gray-900">
+                    Appointment Scheduled
+                  </p>
+                  <p class="text-sm text-gray-500">Jan 20, 2024 at 10:30 AM</p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <div class="flex-shrink-0">
+                  <div
+                    class="h-8 w-8 rounded-full bg-green-100 flex items-center justify-center"
+                  >
+                    <i class="fas fa-flask text-green-600"></i>
+                  </div>
+                </div>
+                <div class="ml-3">
+                  <p class="text-sm font-medium text-gray-900">
+                    Lab Results Updated
+                  </p>
+                  <p class="text-sm text-gray-500">Jan 15, 2024</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mb-6">
+            <h4 class="text-sm font-medium text-gray-500 uppercase mb-3">
+              Treatment Plan
+            </h4>
+            <div class="bg-gray-50 rounded-lg p-4">
+              <ul class="space-y-3">
+                <li class="flex items-center">
+                  <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                  <span class="text-sm text-gray-600"
+                    >Regular blood sugar monitoring</span
+                  >
+                </li>
+                <li class="flex items-center">
+                  <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                  <span class="text-sm text-gray-600">Anti-VEGF therapy</span>
+                </li>
+                <li class="flex items-center">
+                  <i class="fas fa-clock text-yellow-500 mr-2"></i>
+                  <span class="text-sm text-gray-600"
+                    >Follow-up examination in 3 months</span
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div>
+            <h4 class="text-sm font-medium text-gray-500 uppercase mb-3">
+              Quick Actions
+            </h4>
+            <div class="grid grid-cols-2 gap-4">
+              <button
+                class="!rounded-button bg-custom text-white px-4 py-2 text-sm flex items-center justify-center"
+              >
+                <i class="fas fa-calendar-plus mr-2"></i>
+                Schedule
+              </button>
+              <button
+                class="!rounded-button bg-white border border-gray-300 text-gray-700 px-4 py-2 text-sm flex items-center justify-center"
+              >
+                <i class="fas fa-message mr-2"></i>
+                Message
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      function updateRecoveryRate() {
+        fetch("/api/recovery-rate")
+          .then((response) => response.json())
+          .then((data) => {
+            document.getElementById("recovery-rate").textContent =
+              data.rate + "%";
+            document.getElementById("recovery-trend").innerHTML = `
+                        <i class="fas fa-arrow-${
+                          data.trend === "up" ? "up" : "down"
+                        } mr-1"></i>
+                        ${data.change}% ${
+              data.trend === "up" ? "improvement" : "decrease"
+            }
+                    `;
+          });
+      }
+      setInterval(updateRecoveryRate, 5000);
+
+      function togglePanel() {
+        const panel = document.getElementById("patient-details-panel");
+        panel.classList.toggle("translate-x-full");
+      }
+
+      document
+        .querySelectorAll("table button.text-custom")
+        .forEach((button) => {
+          button.addEventListener("click", togglePanel);
+        });
+
+      const riskChart = echarts.init(document.getElementById("risk-chart"));
+      const riskOption = {
+        animation: false,
+        tooltip: {
+          trigger: "item",
+        },
+        series: [
+          {
+            name: "Risk Levels",
+            type: "pie",
+            radius: ["40%", "70%"],
+            avoidLabelOverlap: false,
+            itemStyle: {
+              borderRadius: 10,
+              borderColor: "#fff",
+              borderWidth: 2,
+            },
+            label: {
+              show: false,
+              position: "center",
+            },
+            emphasis: {
+              label: {
+                show: true,
+                fontSize: "40",
+                fontWeight: "bold",
+              },
+            },
+            labelLine: {
+              show: false,
+            },
+            data: [
+              { value: 1048, name: "Low Risk" },
+              { value: 735, name: "Medium Risk" },
+              { value: 580, name: "High Risk" },
+              { value: 484, name: "Critical" },
+            ],
+          },
+        ],
+      };
+      riskChart.setOption(riskOption);
+      window.addEventListener("resize", function () {
+        riskChart.resize();
+      });
+    </script>
+  </body>
+</html>

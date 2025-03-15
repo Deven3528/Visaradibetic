@@ -56,23 +56,29 @@ def contact ():
 def Dregistration():
     return render_template('Dregistration.html')
 
-@app.route('/DDash.html')
-def DDash():
-    return render_template('DDash.html')
+@app.route('/Ddash.html')
+def Ddash():
+    return render_template('Ddash.html')
 
-@app.route('/doctor_dashboard.html')
-def doctor_dashboard():
-    return render_template("doctor_dashboard.html")
-@app.route('/patient_dashboard.html')
-def patient_dashboard():
-    return render_template("patient_dashboard.html")
+@app.route('/Dappointment.html')
+def Dappointment():
+    return render_template('Dappointment.html')
 
-@app.route('/appointment_dashboard.html')
-def appointment_dashboard():
-    return render_template("appointment_dashboard.html")
-@app.route('/settings_dashboard.html')
-def settings_dashboard():
-    return render_template("settings_dashboard.html")
+@app.route('/Danalysis.html')
+def Danalysis():
+    return render_template('Danalysis.html')
+
+@app.route('/Dsetting.html')
+def Dsetting():
+    return render_template('Dsetting.html')
+
+@app.route('/DReport.html')
+def DReport():
+    return render_template('DReport.html')
+
+@app.route('/DPatientmgmt.html')
+def DPatientmgmt():
+    return render_template('DPatientmgmt.html')
 
 @app.route('/Pregistration.html')
 def Pregistration():
